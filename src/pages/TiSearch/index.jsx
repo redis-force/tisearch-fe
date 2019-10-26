@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Spin, Button, Row, Col, AutoComplete, Input, Icon, Tag } from 'antd';
 import { connect } from 'dva';
+import router from 'umi/router';
 import FeedCard from './FeedCard';
 import style from './style.less';
 
@@ -9,20 +10,28 @@ import style from './style.less';
   fetchingSuggestions: loading.effects['tisearch/getSearchSuggestions'],
 }))
 class TiSearch extends PureComponent {
-  state = {
-    query: '',
-    suggestions: [
-      'SELECT * FROM',
-      'SELECT * FROM tweets',
-      'SELECT * FROM users',
-      "SELECT * FROM tweets WHERE MATCH(content) AGAINST ('')",
-      "SELECT * FROM tweets WHERE MATCH (content) AGAINST ('database' IN NATURE LANGUAGE MODE)",
-      "SELECT * FROM users WHERE MATCH () AGAINST ('' IN BOOLEAN MODE)",
-    ],
-  };
+  constructor(props) {
+    super(props);
+    const {
+      location: {
+        query: { q },
+      },
+    } = props;
+    this.state = {
+      query: q,
+      suggestions: [
+        'SELECT * FROM',
+        'SELECT * FROM tweets',
+        'SELECT * FROM users',
+        "SELECT * FROM tweets WHERE MATCH(content) AGAINST ('')",
+        "SELECT * FROM tweets WHERE MATCH (content) AGAINST ('database' IN NATURE LANGUAGE MODE)",
+        "SELECT * FROM users WHERE MATCH () AGAINST ('' IN BOOLEAN MODE)",
+      ],
+    };
+  }
 
   componentDidMount() {
-    // console.log(document.querySelector('#root'))
+    this.handleSearch();
   }
 
   handleSearch = () => {
@@ -32,6 +41,13 @@ class TiSearch extends PureComponent {
     if (!query) {
       return;
     }
+
+    router.replace({
+      pathname: '/ti-search',
+      query: {
+        q: query,
+      },
+    });
 
     dispatch({
       type: 'tisearch/getSearchFeeds',
