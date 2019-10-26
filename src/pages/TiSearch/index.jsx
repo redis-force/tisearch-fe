@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
-import { Spin, Card, Row, Col, AutoComplete, Input, Button, Icon } from 'antd';
+import { Spin, Card, Row, Col, AutoComplete, Input } from 'antd';
 import { connect } from 'dva';
+// import { getInterests, getCars } from './util'
+// import json from './mock'
 import style from './style.less';
 
 const { Search } = Input;
@@ -11,6 +13,8 @@ const { Search } = Input;
   fetchingSuggestions: loading.effects['tisearch/getSearchSuggestions'],
 }))
 class TiSearch extends PureComponent {
+  componentDidMount() {}
+
   handleSearch = params => {
     const { dispatch } = this.props;
     dispatch({
