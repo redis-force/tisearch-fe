@@ -10,7 +10,7 @@ export default {
   menu: {
     locale: true,
   },
-  title: 'Ti Search',
+  title: 'Fulltext Search',
   pwa: false,
   iconfontUrl: '',
 };
