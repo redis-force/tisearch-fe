@@ -121,7 +121,7 @@ class TiSearch extends PureComponent {
     );
   };
 
-  renderTwitterCard = ({ id, timestamp, content, user }) => {
+  renderTwitterCard = ({ id, content, user }) => {
     const getImageViaId = `/avatar/${id % 174}.png`;
     const parsedContent = content.replace(/@([^#|\s]+)\s/g, match => `<span>${match}</span>`);
 
@@ -189,7 +189,7 @@ class TiSearch extends PureComponent {
   render() {
     const {
       fetchingSuggestions = false,
-      feeds: { type, data, plans },
+      feeds: { data, plans },
     } = this.props;
     const { modalVisible } = this.state;
 
@@ -204,7 +204,9 @@ class TiSearch extends PureComponent {
             <FeedCard
               key={feed.id}
               dataSource={feed}
-              renderCard={type === 'tweets' ? this.renderTwitterCard : this.renderPersonCard}
+              renderCard={
+                feed.content !== undefined ? this.renderTwitterCard : this.renderPersonCard
+              }
             />
           ))}
         </div>
