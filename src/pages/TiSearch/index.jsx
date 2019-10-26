@@ -1,9 +1,28 @@
 import React, { PureComponent } from 'react';
-import { Spin, Button, Row, Col, AutoComplete, Input, Icon, Tag } from 'antd';
+import { Spin, Button, Row, Col, AutoComplete, Input, Icon, Tag, Modal, Table } from 'antd';
 import { connect } from 'dva';
 import router from 'umi/router';
 import FeedCard from './FeedCard';
 import style from './style.less';
+
+const PLAN_COLUMNS = [
+  {
+    title: 'id',
+    dataIndex: 'id',
+  },
+  {
+    title: 'count',
+    dataIndex: 'count',
+  },
+  {
+    title: 'task',
+    dataIndex: 'task',
+  },
+  {
+    title: 'operation_info',
+    dataIndex: 'operation_info',
+  },
+];
 
 @connect(({ tisearch, loading }) => ({
   feeds: tisearch.feeds,
@@ -19,6 +38,7 @@ class TiSearch extends PureComponent {
     } = props;
     this.state = {
       query: q,
+      modalVisible: false,
       suggestions: [
         'SELECT * FROM',
         'SELECT * FROM tweets',
@@ -169,8 +189,10 @@ class TiSearch extends PureComponent {
   render() {
     const {
       fetchingSuggestions = false,
-      feeds: { type, data },
+      feeds: { type, data, plans },
     } = this.props;
+    const { modalVisible } = this.state;
+
     return (
       <Spin spinning={fetchingSuggestions}>
         {/* <iframe className={style.frame} src="/matrix.html" title="matrix" /> */}
@@ -186,6 +208,41 @@ class TiSearch extends PureComponent {
             />
           ))}
         </div>
+        {plans && Boolean(plans.length) && (
+          <Button
+            className={style.corner}
+            type="dashed"
+            shape="circle"
+            onClick={() =>
+              this.setState(state => ({
+                ...state,
+                modalVisible: true,
+              }))
+            }
+          >
+            Plan
+          </Button>
+        )}
+        <Modal
+          title="EXPLAIN PLAN"
+          onCancel={() =>
+            this.setState(state => ({
+              ...state,
+              modalVisible: false,
+            }))
+          }
+          visible={modalVisible}
+          footer={false}
+          size="small"
+        >
+          <Table
+            size="small"
+            rowKey="id"
+            pagination={false}
+            dataSource={plans}
+            columns={PLAN_COLUMNS}
+          />
+        </Modal>
       </Spin>
     );
   }
