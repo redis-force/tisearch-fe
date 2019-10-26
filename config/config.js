@@ -95,24 +95,30 @@ export default {
         {
           path: '/',
           component: '../layouts/BasicLayout',
-          authority: ['admin', 'user'],
+          // authority: ['admin', 'user'],
           routes: [
             {
               path: '/',
-              redirect: '/welcome',
+              redirect: '/ti-search',
             },
+            // {
+            //   path: '/welcome',
+            //   name: 'welcome',
+            //   icon: 'smile',
+            //   component: './Welcome',
+            // },
+            // {
+            //   path: '/admin',
+            //   name: 'admin',
+            //   icon: 'crown',
+            //   component: './Admin',
+            //   authority: ['admin'],
+            // },
             {
-              path: '/welcome',
-              name: 'welcome',
+              name: 'TiSearch',
               icon: 'smile',
-              component: './Welcome',
-            },
-            {
-              path: '/admin',
-              name: 'admin',
-              icon: 'crown',
-              component: './Admin',
-              authority: ['admin'],
+              path: '/ti-search',
+              component: './TiSearch',
             },
             {
               component: './404',

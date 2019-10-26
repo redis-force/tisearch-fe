@@ -1,5 +1,5 @@
 export default {
-  navTheme: 'dark',
+  navTheme: 'light',
   primaryColor: '#1890FF',
   layout: 'sidemenu',
   contentWidth: 'Fluid',
@@ -10,7 +10,7 @@ export default {
   menu: {
     locale: true,
   },
-  title: 'Ant Design Pro',
+  title: 'Ti Search',
   pwa: false,
   iconfontUrl: '',
 };

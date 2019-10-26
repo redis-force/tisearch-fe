@@ -12,7 +12,7 @@ import { formatMessage } from 'umi-plugin-react/locale';
 import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { isAntDesignPro, getAuthorityFromRouter } from '@/utils/utils';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo.png';
 const noMatch = (
   <Result
     status="403"
@@ -155,10 +155,9 @@ const BasicLayout = props => {
           <span>{route.breadcrumbName}</span>
         );
       }}
-      footerRender={footerRender}
+      // footerRender={footerRender}
       menuDataRender={menuDataRender}
       formatMessage={formatMessage}
-      rightContentRender={rightProps => <RightContent {...rightProps} />}
       {...props}
       {...settings}
     >
