@@ -28,6 +28,11 @@ class TiSearch extends PureComponent {
   handleSearch = () => {
     const { dispatch } = this.props;
     const { query } = this.state;
+
+    if (!query) {
+      return;
+    }
+
     dispatch({
       type: 'tisearch/getSearchFeeds',
       payload: {
@@ -52,7 +57,6 @@ class TiSearch extends PureComponent {
             dataSource={suggestions}
             value={query}
             onChange={this.handleQueryChange}
-            placeholder="Query"
             style={{ width: '100%' }}
             size="large"
             defaultActiveFirstOption
@@ -62,9 +66,9 @@ class TiSearch extends PureComponent {
           >
             <Input
               size="large"
-              addonBefore="EXPLAIN"
               placeholder="Type SQL"
-              // style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0, borderRight: 'none' }}
+              onPressEnter={this.handleSearch}
+              style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0, borderRight: 'none' }}
             />
           </AutoComplete>
         </Col>
@@ -82,7 +86,7 @@ class TiSearch extends PureComponent {
   };
 
   renderTwitterCard = ({ id, timestamp, content, user }) => {
-    const getImageViaId = `/avatar/${id % 180}.png`;
+    const getImageViaId = `/avatar/${id % 174}.png`;
     const parsedContent = content.replace(/@([^#|\s]+)\s/g, user => `<span>${user}</span>`);
 
     return (
@@ -102,7 +106,7 @@ class TiSearch extends PureComponent {
   };
 
   renderPersonCard = ({ id, gender, name, place, picture, cars, interests }) => {
-    const getImageViaId = `/avatar/${(id + 100) % 180}.png`;
+    const getImageViaId = `/avatar/${(id + 100) % 174}.png`;
 
     return (
       <div className={style.personCard}>
@@ -120,8 +124,8 @@ class TiSearch extends PureComponent {
             <div className={style.plist}>
               Interests:
               <br />
-              {interests.map(item => (
-                <Tag color="purple" key={item}>
+              {interests.map((item, index) => (
+                <Tag color="purple" key={index}>
                   {item}
                 </Tag>
               ))}
@@ -131,8 +135,8 @@ class TiSearch extends PureComponent {
             <div className={style.plist}>
               Cars:
               <br />
-              {cars.map(item => (
-                <Tag color="purple" key={item}>
+              {cars.map((item, index) => (
+                <Tag color="purple" key={index}>
                   {item}
                 </Tag>
               ))}
