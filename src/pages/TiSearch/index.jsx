@@ -96,7 +96,8 @@ class TiSearch extends PureComponent {
           </h3>
           {interests && Boolean(interests.length) && (
             <div className={style.plist}>
-              Interests: &nbsp;
+              Interests:
+              <br />
               {interests.map(item => (
                 <Tag color="purple" key={item}>
                   {item}
@@ -106,7 +107,8 @@ class TiSearch extends PureComponent {
           )}
           {cars && Boolean(cars.length) && (
             <div className={style.plist}>
-              Cars: &nbsp;
+              Cars:
+              <br />
               {cars.map(item => (
                 <Tag color="purple" key={item}>
                   {item}
@@ -126,10 +128,10 @@ class TiSearch extends PureComponent {
     const { fetchingSuggestions = false, feeds } = this.props;
     return (
       <Spin spinning={fetchingSuggestions}>
-        <iframe className={style.frame} src="/matrix.html" title="matrix" />
-        <Card bordered={false} className={style.searchWrapper}>
-          {this.renderHeader()}
-        </Card>
+        {/* <iframe className={style.frame} src="/matrix.html" title="matrix" /> */}
+        {/* <Card bordered={false} className={style.searchWrapper}> */}
+        {this.renderHeader()}
+        {/* </Card> */}
         <div className={style.cardWrapper}>
           {feeds.map(feed => (
             <FeedCard

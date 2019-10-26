@@ -1,8 +1,9 @@
 .anicard {
-  width: calc(50% - 15px);
+  width: calc((100% - 60px) / 3);
   flex-shrink: 0;
 
-  &:nth-child(2n) {
+  &:nth-child(3n),
+  &:nth-child(3n - 1) {
     margin-left: 30px;
   }
 }
