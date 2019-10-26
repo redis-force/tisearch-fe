@@ -14,7 +14,9 @@ const { Search } = Input;
   fetchingSuggestions: loading.effects['tisearch/getSearchSuggestions'],
 }))
 class TiSearch extends PureComponent {
-  componentDidMount() {}
+  componentDidMount() {
+    // console.log(document.querySelector('#root'))
+  }
 
   handleSearch = params => {
     const { dispatch } = this.props;

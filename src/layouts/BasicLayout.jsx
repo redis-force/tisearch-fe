@@ -172,5 +172,6 @@ const BasicLayout = props => {
 
 export default connect(({ global, settings }) => ({
   collapsed: true,
+  onCollapse: () => {},
   settings,
 }))(BasicLayout);
