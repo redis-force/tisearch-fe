@@ -1,9 +1,10 @@
+import qs from 'qs';
 import request from '@/utils/request';
 
-export async function getSearchSuggestions(query) {
-  return request(`/api/search_suggestions?query=${query}`);
+export async function getSearchSuggestions(params) {
+  return request(`/api/search_suggestions?${qs.stringify(params)}`);
 }
 
-export async function getSearchFeeds(query) {
-  return request(`/api/search_feeds?query=${query}`);
+export async function getSearchFeeds(params) {
+  return request(`/api/search_feeds?${qs.stringify(params)}`);
 }

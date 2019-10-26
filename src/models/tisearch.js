@@ -3,7 +3,7 @@ import { getSearchSuggestions, getSearchFeeds } from '@/services/tisearch';
 export default {
   namespace: 'tisearch',
   state: {
-    suggestions: [],
+    suggestions: ['sug', 'sugge', 'suggest'],
     feeds: [],
   },
   effects: {
