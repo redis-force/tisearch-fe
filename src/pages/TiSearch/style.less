@@ -12,6 +12,7 @@
 }
 
 .twitterCard {
+  box-sizing: border-box;
   height: 140px;
   background: #fff;
   margin-top: 24px;
@@ -19,14 +20,20 @@
   border-radius: 6px;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
   transition: 0.3s;
+  position: relative;
 
   &:hover {
     box-shadow: 0 8px 64px 0 rgba(0, 0, 0, 0.1);
     transform: translateY(-10px);
+
+    & .cardType {
+      clip-path: polygon(0 100%, 100% 100%, 100% 0);
+    }
   }
 }
 
 .tavatar {
+  flex-shrink: 0;
   width: 50px;
   height: 50px;
   overflow: hidden;
@@ -54,19 +61,52 @@
 }
 
 .tmain {
+  flex-grow: 1;
+
   h3 {
     font-size: 20px;
     font-weight: 300px;
     margin-top: 10px;
+    letter-spacing: 1px;
   }
 
-  & .tcontent {
+  span {
+    background-color: #f9f0ff;
+    color: #7645c9;
+    padding: 2px 4px;
+    border-radius: 6px;
+  }
+
+  .tcontent {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
+    padding-right: 12px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
     overflow: hidden;
     word-break: keep-all;
     word-wrap: break-word;
-    max-width: 400px;
+  }
+}
+
+.cardType {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 0;
+  bottom: 0;
+  background: #f9f0ff;
+  color: #7645c9;
+  transition: 0.3s;
+  clip-path: polygon(100% 100%, 100% 100%, 100% 100%);
+
+  :global {
+    .anticon {
+      transform: translate(8px, 8px);
+    }
   }
 }

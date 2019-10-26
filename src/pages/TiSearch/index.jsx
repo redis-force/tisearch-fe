@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Spin, Card, Row, Col, AutoComplete, Input } from 'antd';
+import { Spin, Card, Row, Col, AutoComplete, Input, Icon } from 'antd';
 import { connect } from 'dva';
 import FeedCard from './FeedCard';
 // import { getInterests, getCars } from './util'
@@ -59,6 +59,7 @@ class TiSearch extends PureComponent {
 
   renderTwitterCard = ({ id, timestamp, content, name }) => {
     const getImageViaId = `/avatar/${id % 180}.png`;
+    const parsedContent = content.replace(/@([^#|\s]+)\s/g, user => `<span>${user}</span>`);
 
     return (
       <div className={style.twitterCard}>
@@ -67,7 +68,10 @@ class TiSearch extends PureComponent {
         </div>
         <div className={style.tmain}>
           <h3>{name}</h3>
-          <div className={style.tcontent} dangerouslySetInnerHTML={{ __html: content }} />
+          <div className={style.tcontent} dangerouslySetInnerHTML={{ __html: parsedContent }} />
+        </div>
+        <div className={style.cardType}>
+          <Icon type="twitter" size={20} />
         </div>
       </div>
     );

@@ -4,9 +4,9 @@ import style from './FeedCard.less';
 
 function FeedCard({ dataSource, renderCard }) {
   const transitions = useTransition(dataSource, data => data.id, {
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
+    from: { opacity: 0, transform: 'translateX(20px)' },
+    enter: { opacity: 1, transform: 'translateX(0)' },
+    leave: { opacity: 0, transform: 'translateX(-20px)' },
   });
 
   return transitions.map(

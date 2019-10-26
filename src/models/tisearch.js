@@ -19,11 +19,15 @@ export default {
       {
         id: '1467813782',
         name: 'cozz',
-        content:
-          "is upset that he can't update his Facebook by texting it... and might cry as a result  School today also. Blah!",
+        content: '@ngbscs ... and might cry as a result  School today also. Blah!',
       },
       {
         id: '1467814192',
+        name: 'mybirch',
+        content: 'need a hug',
+      },
+      {
+        id: '1467814142',
         name: 'mybirch',
         content: 'need a hug',
       },
