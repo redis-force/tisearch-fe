@@ -96,7 +96,9 @@ class TiSearch extends PureComponent {
             <div className={style.plist}>
               Interests: &nbsp;
               {interests.map(item => (
-                <Tag color="blue">{item}</Tag>
+                <Tag color="blue" key={item}>
+                  {item}
+                </Tag>
               ))}
             </div>
           )}
@@ -104,7 +106,9 @@ class TiSearch extends PureComponent {
             <div className={style.plist}>
               Cars: &nbsp;
               {cars.map(item => (
-                <Tag color="blue">{item}</Tag>
+                <Tag color="blue" key={item}>
+                  {item}
+                </Tag>
               ))}
             </div>
           )}
