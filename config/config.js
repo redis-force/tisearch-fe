@@ -101,7 +101,7 @@ export default {
               redirect: '/ti-search',
             },
             {
-              name: 'Fulltext Search',
+              name: 'ti-search',
               icon: 'file-search',
               path: '/ti-search',
               component: './TiSearch',

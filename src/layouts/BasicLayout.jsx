@@ -3,15 +3,15 @@
  * You can view component api by:
  * https://github.com/ant-design/ant-design-pro-layout
  */
-import ProLayout, { DefaultFooter } from '@ant-design/pro-layout';
+import ProLayout from '@ant-design/pro-layout';
 import React, { useEffect } from 'react';
 import Link from 'umi/link';
 import { connect } from 'dva';
-import { Icon, Result, Button } from 'antd';
+import { Result, Button } from 'antd';
 import { formatMessage } from 'umi-plugin-react/locale';
 import Authorized from '@/utils/Authorized';
 // // import RightContent from '@/components/GlobalHeader/RightContent';
-import { isAntDesignPro, getAuthorityFromRouter } from '@/utils/utils';
+import { getAuthorityFromRouter } from '@/utils/utils';
 import logo from '../assets/logo.png';
 
 const noMatch = (
@@ -36,57 +36,57 @@ const menuDataRender = menuList =>
     return Authorized.check(item.authority, localItem, null);
   });
 
-const defaultFooterDom = (
-  <DefaultFooter
-    copyright="2019 蚂蚁金服体验技术部出品"
-    links={[
-      {
-        key: 'Ant Design Pro',
-        title: 'Ant Design Pro',
-        href: 'https://pro.ant.design',
-        blankTarget: true,
-      },
-      {
-        key: 'github',
-        title: <Icon type="github" />,
-        href: 'https://github.com/ant-design/ant-design-pro',
-        blankTarget: true,
-      },
-      {
-        key: 'Ant Design',
-        title: 'Ant Design',
-        href: 'https://ant.design',
-        blankTarget: true,
-      },
-    ]}
-  />
-);
+// const defaultFooterDom = (
+//   <DefaultFooter
+//     copyright="2019 蚂蚁金服体验技术部出品"
+//     links={[
+//       {
+//         key: 'Ant Design Pro',
+//         title: 'Ant Design Pro',
+//         href: 'https://pro.ant.design',
+//         blankTarget: true,
+//       },
+//       {
+//         key: 'github',
+//         title: <Icon type="github" />,
+//         href: 'https://github.com/ant-design/ant-design-pro',
+//         blankTarget: true,
+//       },
+//       {
+//         key: 'Ant Design',
+//         title: 'Ant Design',
+//         href: 'https://ant.design',
+//         blankTarget: true,
+//       },
+//     ]}
+//   />
+// );
 
-const footerRender = () => {
-  if (!isAntDesignPro()) {
-    return defaultFooterDom;
-  }
+// const footerRender = () => {
+//   if (!isAntDesignPro()) {
+//     return defaultFooterDom;
+//   }
 
-  return (
-    <>
-      {defaultFooterDom}
-      <div
-        style={{
-          padding: '0px 24px 24px',
-          textAlign: 'center',
-        }}
-      >
-        <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">
-          <img
-            src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg"
-            width="82px"
-            alt="netlify logo"
-          />
-        </a>
-      </div>
-    </>
-  );
-};
+//   return (
+//     <>
+//       {defaultFooterDom}
+//       <div
+//         style={{
+//           padding: '0px 24px 24px',
+//           textAlign: 'center',
+//         }}
+//       >
+//         <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">
+//           <img
+//             src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg"
+//             width="82px"
+//             alt="netlify logo"
+//           />
+//         </a>
+//       </div>
+//     </>
+//   );
+// };
 
 const BasicLayout = props => {
   const {
@@ -103,9 +103,9 @@ const BasicLayout = props => {
 
   useEffect(() => {
     if (dispatch) {
-      dispatch({
-        type: 'user/fetchCurrent',
-      });
+      // dispatch({
+      //   type: 'user/fetchCurrent',
+      // });
       dispatch({
         type: 'settings/getSetting',
       });
