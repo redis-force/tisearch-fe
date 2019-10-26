@@ -123,7 +123,7 @@ class TiSearch extends PureComponent {
 
   renderTwitterCard = ({ id, timestamp, content, user }) => {
     const getImageViaId = `/avatar/${id % 174}.png`;
-    const parsedContent = content.replace(/@([^#|\s]+)\s/g, user => `<span>${user}</span>`);
+    const parsedContent = content.replace(/@([^#|\s]+)\s/g, match => `<span>${match}</span>`);
 
     return (
       <div className={style.twitterCard}>
