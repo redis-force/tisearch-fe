@@ -6,5 +6,5 @@ export async function getSearchSuggestions(params) {
 }
 
 export async function getSearchFeeds(params) {
-  return request(`/api/search_feeds?${qs.stringify(params)}`);
+  return request(`/api/v1/search?${qs.stringify(params)}`);
 }

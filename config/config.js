@@ -14,6 +14,12 @@ const plugins = [
       antd: true,
       dva: {
         hmr: true,
+        config: {
+          onError(e) {
+            e.preventDefault();
+            // console.error(e.message);
+          },
+        },
       },
       locale: {
         // default false
@@ -78,38 +84,18 @@ export default {
   // umi routes: https://umijs.org/zh/guide/router.html
   routes: [
     {
-      path: '/user',
-      component: '../layouts/UserLayout',
-      routes: [
-        {
-          name: 'login',
-          path: '/user/login',
-          component: './user/login',
-        },
-      ],
-    },
-    {
       path: '/',
-      component: '../layouts/SecurityLayout',
+      component: '../layouts/BasicLayout',
       routes: [
         {
           path: '/',
-          component: '../layouts/BasicLayout',
-          routes: [
-            {
-              path: '/',
-              redirect: '/ti-search',
-            },
-            {
-              name: 'ti-search',
-              icon: 'file-search',
-              path: '/ti-search',
-              component: './TiSearch',
-            },
-            {
-              component: './404',
-            },
-          ],
+          redirect: '/ti-search',
+        },
+        {
+          name: 'ti-search',
+          icon: 'file-search',
+          path: '/ti-search',
+          component: './TiSearch',
         },
         {
           component: './404',

@@ -1,65 +1,87 @@
-import React, { PureComponent, Fragment } from 'react';
-import { Spin, Card, Row, Col, AutoComplete, Input, Icon, Tag } from 'antd';
+import React, { PureComponent } from 'react';
+import { Spin, Button, Row, Col, AutoComplete, Input, Icon, Tag } from 'antd';
 import { connect } from 'dva';
 import FeedCard from './FeedCard';
-// import { getInterests, getCars } from './util'
-// import json from './mock'
 import style from './style.less';
 
-const { Search } = Input;
-
 @connect(({ tisearch, loading }) => ({
-  suggestions: tisearch.suggestions,
   feeds: tisearch.feeds,
   fetchingSuggestions: loading.effects['tisearch/getSearchSuggestions'],
 }))
 class TiSearch extends PureComponent {
+  state = {
+    query: '',
+    suggestions: [
+      'SELECT * FROM',
+      'SELECT * FROM tweets',
+      'SELECT * FROM users',
+      "SELECT * FROM tweets WHERE MATCH(content) AGAINST ('')",
+      "SELECT * FROM tweets WHERE MATCH (content) AGAINST ('database' IN NATURE LANGUAGE MODE)",
+      "SELECT * FROM users WHERE MATCH () AGAINST ('' IN BOOLEAN MODE)",
+    ],
+  };
+
   componentDidMount() {
     // console.log(document.querySelector('#root'))
   }
 
-  handleSearch = params => {
+  handleSearch = () => {
     const { dispatch } = this.props;
+    const { query } = this.state;
     dispatch({
       type: 'tisearch/getSearchFeeds',
       payload: {
-        query: params,
+        q: query,
       },
     });
   };
 
-  handleGetSearchSuggestions = params => {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'tisearch/getSearchSuggestions',
-      payload: {
-        query: params,
-      },
-    });
+  handleQueryChange = query => {
+    this.setState(state => ({
+      ...state,
+      query,
+    }));
   };
 
   renderHeader = () => {
-    const { suggestions = [] } = this.props;
+    const { query, suggestions } = this.state;
     return (
-      <Row gutter={20}>
-        <Col span={24}>
+      <Row gutter={0}>
+        <Col span={23}>
           <AutoComplete
             dataSource={suggestions}
-            // onChange={this.handleGetSearchSuggestions}
-            onSelect={this.handleSearch}
+            value={query}
+            onChange={this.handleQueryChange}
             placeholder="Query"
             style={{ width: '100%' }}
             size="large"
             defaultActiveFirstOption
+            filterOption={(iv, { key }) => {
+              return key.startsWith(iv) && key !== iv;
+            }}
           >
-            <Search size="large" enterButton />
+            <Input
+              size="large"
+              addonBefore="EXPLAIN"
+              placeholder="Type SQL"
+              // style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0, borderRight: 'none' }}
+            />
           </AutoComplete>
+        </Col>
+        <Col span={1}>
+          <Button
+            icon="search"
+            size="large"
+            style={{ width: '100%', borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+            type="primary"
+            onClick={this.handleSearch}
+          />
         </Col>
       </Row>
     );
   };
 
-  renderTwitterCard = ({ id, timestamp, content, name }) => {
+  renderTwitterCard = ({ id, timestamp, content, user }) => {
     const getImageViaId = `/avatar/${id % 180}.png`;
     const parsedContent = content.replace(/@([^#|\s]+)\s/g, user => `<span>${user}</span>`);
 
@@ -69,7 +91,7 @@ class TiSearch extends PureComponent {
           <img alt="" src={getImageViaId} />
         </div>
         <div className={style.tmain}>
-          <h3>{name}</h3>
+          <h3>{user}</h3>
           <div className={style.tcontent} dangerouslySetInnerHTML={{ __html: parsedContent }} />
         </div>
         <div className={style.tcardType}>
@@ -125,7 +147,10 @@ class TiSearch extends PureComponent {
   };
 
   render() {
-    const { fetchingSuggestions = false, feeds } = this.props;
+    const {
+      fetchingSuggestions = false,
+      feeds: { type, data },
+    } = this.props;
     return (
       <Spin spinning={fetchingSuggestions}>
         {/* <iframe className={style.frame} src="/matrix.html" title="matrix" /> */}
@@ -133,11 +158,11 @@ class TiSearch extends PureComponent {
         {this.renderHeader()}
         {/* </Card> */}
         <div className={style.cardWrapper}>
-          {feeds.map(feed => (
+          {data.map(feed => (
             <FeedCard
               key={feed.id}
               dataSource={feed}
-              renderCard={feed.type === 'people' ? this.renderPersonCard : this.renderTwitterCard}
+              renderCard={type === 'tweets' ? this.renderTwitterCard : this.renderPersonCard}
             />
           ))}
         </div>
