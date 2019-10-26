@@ -162,13 +162,11 @@ export default {
     basePath: '/',
   },
   chainWebpack: webpackPlugin,
-  /*
   proxy: {
-    '/server/api/': {
-      target: 'https://preview.pro.ant.design/',
+    '/api': {
+      target: 'http://tisearch.frtmelody.tech',
       changeOrigin: true,
-      pathRewrite: { '^/server': '' },
+      pathRewrite: {},
     },
   },
-  */
 };
