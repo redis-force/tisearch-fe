@@ -31,6 +31,26 @@ export default {
         name: 'mybirch',
         content: 'need a hug',
       },
+      {
+        id: '1231',
+        type: 'people',
+        name: 'Mr Reitze',
+        gender: 'male',
+        place: 'Netherlands',
+        coordinates: {
+          latitude: 41.2243,
+          longitude: -86.3201,
+        },
+        interests: [
+          'volunteering_at_a_charity_center',
+          'baseball',
+          'painting',
+          'camping',
+          'chess',
+          'boardgames',
+        ],
+        cars: ['bense'],
+      },
     ],
   },
   effects: {
