@@ -71,7 +71,7 @@ const GlobalModel = {
     changeLayoutCollapsed(
       state = {
         notices: [],
-        collapsed: true,
+        collapsed: false,
       },
       { payload },
     ) {
@@ -89,7 +89,7 @@ const GlobalModel = {
     saveClearedNotices(
       state = {
         notices: [],
-        collapsed: true,
+        collapsed: false,
       },
       { payload },
     ) {

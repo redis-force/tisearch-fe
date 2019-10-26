@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { Spin, Card, Row, Col, AutoComplete, Input, Icon, Tag } from 'antd';
 import { connect } from 'dva';
 import FeedCard from './FeedCard';
@@ -124,8 +124,10 @@ class TiSearch extends PureComponent {
     const { fetchingSuggestions = false, feeds } = this.props;
     return (
       <Spin spinning={fetchingSuggestions}>
-        <Card>{this.renderHeader()}</Card>
-
+        <iframe className={style.frame} src="/matrix.html" title="matrix" />
+        <Card bordered={false} className={style.searchWrapper}>
+          {this.renderHeader()}
+        </Card>
         <div className={style.cardWrapper}>
           {feeds.map(feed => (
             <FeedCard

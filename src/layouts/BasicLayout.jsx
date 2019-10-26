@@ -12,7 +12,7 @@ import { formatMessage } from 'umi-plugin-react/locale';
 import Authorized from '@/utils/Authorized';
 // // import RightContent from '@/components/GlobalHeader/RightContent';
 import { getAuthorityFromRouter } from '@/utils/utils';
-// import logo from '../assets/logo.png';
+import logo from '../assets/logo.png';
 
 const noMatch = (
   <Result
@@ -129,8 +129,9 @@ const BasicLayout = props => {
   };
   return (
     <ProLayout
-      logo={false}
-      onCollapse={handleMenuCollapse}
+      logo={logo}
+      headerRender={false}
+      // onCollapse={handleMenuCollapse}
       menuItemRender={(menuItemProps, defaultDom) => {
         if (menuItemProps.isUrl) {
           return defaultDom;
@@ -170,6 +171,6 @@ const BasicLayout = props => {
 };
 
 export default connect(({ global, settings }) => ({
-  collapsed: global.collapsed,
+  collapsed: true,
   settings,
 }))(BasicLayout);

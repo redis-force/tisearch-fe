@@ -10,27 +10,27 @@ export default {
         name: 'scotthamilton',
         content: 'about to file taxes ',
       },
-      {
-        id: '1467810672',
-        name: 'quanvu',
-        content:
-          "is upset that he can't update his Facebook by texting it... and might cry as a result  School today also. Blah!",
-      },
-      {
-        id: '1467813782',
-        name: 'cozz',
-        content: '@ngbscs ... and might cry as a result  School today also. Blah!',
-      },
-      {
-        id: '1467814192',
-        name: 'mybirch',
-        content: 'need a hug',
-      },
-      {
-        id: '1467814142',
-        name: 'mybirch',
-        content: 'need a hug',
-      },
+      // {
+      //   id: '1467810672',
+      //   name: 'quanvu',
+      //   content:
+      //     "is upset that he can't update his Facebook by texting it... and might cry as a result  School today also. Blah!",
+      // },
+      // {
+      //   id: '1467813782',
+      //   name: 'cozz',
+      //   content: '@ngbscs ... and might cry as a result  School today also. Blah!',
+      // },
+      // {
+      //   id: '1467814192',
+      //   name: 'mybirch',
+      //   content: 'need a hug',
+      // },
+      // {
+      //   id: '1467814142',
+      //   name: 'mybirch',
+      //   content: 'need a hug',
+      // },
       {
         id: '1231',
         type: 'people',
