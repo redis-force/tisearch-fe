@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Spin, Card, Row, Col, AutoComplete, Input } from 'antd';
 import { connect } from 'dva';
+import FeedCard from './FeedCard';
 // import { getInterests, getCars } from './util'
 // import json from './mock'
 import style from './style.less';
@@ -56,11 +57,33 @@ class TiSearch extends PureComponent {
     );
   };
 
+  renderTwitterCard = ({ id, timestamp, content, name }) => {
+    const getImageViaId = `/avatar/${id % 180}.png`;
+
+    return (
+      <div className={style.twitterCard}>
+        <div className={style.tavatar}>
+          <img alt="" src={getImageViaId} />
+        </div>
+        <div className={style.tmain}>
+          <h3>{name}</h3>
+          <div className={style.tcontent} dangerouslySetInnerHTML={{ __html: content }} />
+        </div>
+      </div>
+    );
+  };
+
   render() {
-    const { fetchingSuggestions = false } = this.props;
+    const { fetchingSuggestions = false, feeds } = this.props;
     return (
       <Spin spinning={fetchingSuggestions}>
         <Card>{this.renderHeader()}</Card>
+
+        <div className={style.cardWrapper}>
+          {feeds.map(feed => (
+            <FeedCard key={feed.id} dataSource={feed} renderCard={this.renderTwitterCard} />
+          ))}
+        </div>
       </Spin>
     );
   }

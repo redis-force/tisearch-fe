@@ -4,7 +4,30 @@ export default {
   namespace: 'tisearch',
   state: {
     suggestions: ['sug', 'sugge', 'suggest'],
-    feeds: [],
+    feeds: [
+      {
+        id: '1467812799',
+        name: 'scotthamilton',
+        content: 'about to file taxes ',
+      },
+      {
+        id: '1467810672',
+        name: 'quanvu',
+        content:
+          "is upset that he can't update his Facebook by texting it... and might cry as a result  School today also. Blah!",
+      },
+      {
+        id: '1467813782',
+        name: 'cozz',
+        content:
+          "is upset that he can't update his Facebook by texting it... and might cry as a result  School today also. Blah!",
+      },
+      {
+        id: '1467814192',
+        name: 'mybirch',
+        content: 'need a hug',
+      },
+    ],
   },
   effects: {
     *getSearchSuggestions({ payload }, { call, put }) {
