@@ -215,7 +215,8 @@ class TiSearch extends PureComponent {
         {plans && Boolean(plans.length) && (
           <Button
             className={style.corner}
-            type="dashed"
+            type="primary"
+            size="large"
             shape="circle"
             onClick={() =>
               this.setState(state => ({
@@ -229,6 +230,7 @@ class TiSearch extends PureComponent {
         )}
         <Modal
           title="EXPLAIN PLAN"
+          width={860}
           onCancel={() =>
             this.setState(state => ({
               ...state,
