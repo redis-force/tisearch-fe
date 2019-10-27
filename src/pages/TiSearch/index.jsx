@@ -121,7 +121,7 @@ class TiSearch extends PureComponent {
     );
   };
 
-  renderTwitterCard = ({ id, content, user }) => {
+  renderTwitterCard = ({ id, content, user, time }) => {
     const getImageViaId = `/avatar/${id % 174}.png`;
     const parsedContent = content.replace(/@([^#|\s]+)\s/g, match => `<span>${match}</span>`);
 
@@ -133,6 +133,7 @@ class TiSearch extends PureComponent {
         <div className={style.tmain}>
           <h3>{user}</h3>
           <div className={style.tcontent} dangerouslySetInnerHTML={{ __html: parsedContent }} />
+          <div className={style.ttime}>{time}</div>
         </div>
         <div className={style.tcardType}>
           <Icon type="twitter" size={20} />
@@ -141,7 +142,7 @@ class TiSearch extends PureComponent {
     );
   };
 
-  renderPersonCard = ({ id, gender, name, place, picture, cars, interests }) => {
+  renderPersonCard = ({ id, gender, name, place, cars, interests }) => {
     const getImageViaId = `/avatar/${(id + 100) % 174}.png`;
 
     return (
