@@ -1,0 +1,16 @@
+version: 2.0
+base_image: nodejs/v10.14.0_jessie
+
+build:
+- yarn install
+- yarn build
+
+test:
+  unittest:
+  - echo true
+
+artifacts:
+  targets:
+  - static
+  static:
+    path: dist/
