@@ -142,7 +142,7 @@ class TiSearch extends PureComponent {
     );
   };
 
-  renderPersonCard = ({ id, gender, name, place, cars, interests }) => {
+  renderPersonCard = ({ id, gender, name, place, cars, interests, birthday }) => {
     const getImageViaId = `/avatar/${(id + 100) % 174}.png`;
 
     return (
@@ -179,6 +179,7 @@ class TiSearch extends PureComponent {
               ))}
             </div>
           )}
+          <div className={style.plist}>Birthday: {birthday}</div>
           <div className={style.pcardType}>
             <Icon type="facebook" size={20} />
           </div>
