@@ -21,7 +21,6 @@ export default {
 
     *getSearchFeeds({ payload }, { call, put }) {
       const response = yield call(getSearchFeeds, payload);
-      console.log(response);
       if (response.code === 204) {
         message.info(`Affected ${response.row_affected} Rows`);
       }
